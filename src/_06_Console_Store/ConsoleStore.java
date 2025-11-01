@@ -1,6 +1,9 @@
 package _06_Console_Store;
 
-public class ConsoleStore {
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ConsoleStore<T> {
 
     /*
      * Write a program that simulates shopping in a store using the Scanner and
@@ -37,7 +40,52 @@ public class ConsoleStore {
      */
 
     public static void main(String[] args) {
-
+    	Scanner scan = new Scanner(System.in);
+    	ArrayList<String> cart = new ArrayList();
+    	String item;
+    	String check;
+    	String remove;
+    	int cost = 0;
+    	do {
+    		System.out.println("Hello, welcome to the Console Store, you have 25 dollars to spend, what would you like to buy? We have a shirt, a pastry, a cup, and a wallet \n The shirt is 5 dollars, the pastry is 3 dollars, the cup is 3 dollars, and the wallet is 5 dollars");
+    		item = scan.nextLine();
+    		cart.add(item);
+    		cost += item.equals("shirt")? 5: item.equals("pastry")? 3: item.equals("cup")? 3: item.equals("wallet")? 5: 0;
+    		System.out.println("Would you like to buy something else, view cart, or checkout?");
+    		check = scan.nextLine();
+    		if(check.equals("view cart")) {
+    			System.out.println("These are the items in your cart");
+    	    	for(int i = 0; i < cart.size(); i++) {
+    	    		System.out.println(cart.get(i));
+    	    	}
+    	    	System.out.println("would you like to remove anything?");
+    	    	if(scan.nextLine().equals("yes")) {
+    	    		System.out.println("What would you like to remove");
+    	    		remove = scan.nextLine();
+    	    		for(int i = 0; i < cart.size(); i++) {
+    	    			if(remove.equals(cart.get(i))) {
+    	    				cart.remove(i);
+    	    				//do the cost reduction for the cart next week here
+    	    				System.out.println("successfully removed");
+    	    				System.out.println("Would you like to buy something else, view cart, or checkout?");
+    	    	    		check = scan.nextLine();
+    	    			}
+    	    		}
+    	    	}
+    		}
+    	}while(!(check.equals("checkout")));
+    	System.out.println("These are the items in your cart");
+    	for(int i = 0; i < cart.size(); i++) {
+    		System.out.println(cart.get(i));
+    	}
+    	System.out.println("Your total is " + cost);
+    	
+    	
+   
+    	
+    	
+    	
+    	
     }
 
 }
