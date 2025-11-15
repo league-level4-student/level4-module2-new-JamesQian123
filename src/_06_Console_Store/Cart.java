@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Cart2 {
 	@SuppressWarnings("unchecked")
 	public class Cart<T extends NonFood> {
 	    private T[] cart;
@@ -14,15 +13,14 @@ public class Cart2 {
 	    }
 
 	    // Adds an item to the cart
-	    public void add(T item) {
+	    public void add(T string) {
 	        for (int i = 0; i < cart.length; i++) {
 	            if (cart[i] == null) {
-	                cart[i] = item;
+	                cart[i] = string;
 	                return;
 	            }
 	        }
-	        JOptionPane.showMessageDialog(null,
-	                "Your cart is full!\nNo more than 5 items");
+	        JOptionPane.showMessageDialog(null,"Your cart is full!\nNo more than 5 items");
 	    }
 
 	    // Displays everything currently in the cart
@@ -47,4 +45,4 @@ public class Cart2 {
 	    }
 	}
 
-}
+

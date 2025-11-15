@@ -3,6 +3,9 @@ package _06_Console_Store;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 public class ConsoleStore<T> {
 
     /*
@@ -42,10 +45,14 @@ public class ConsoleStore<T> {
     public static void main(String[] args) {
     	Scanner scan = new Scanner(System.in);
     	ArrayList<String> cart = new ArrayList();
+    	Cart<NonFood> cart2 = new Cart();
     	String item;
     	String check;
     	String remove;
     	int cost = 0;
+    	JFrame frame; 
+    	JPanel panel; 
+
     	do {
     		System.out.println("Hello, welcome to the Console Store, you have 25 dollars to spend, what would you like to buy? We have a shirt, a pastry, a cup, and a wallet \n The shirt is 5 dollars, the pastry is 3 dollars, the cup is 3 dollars, and the wallet is 5 dollars");
     		item = scan.nextLine();
@@ -65,7 +72,12 @@ public class ConsoleStore<T> {
     	    		for(int i = 0; i < cart.size(); i++) {
     	    			if(remove.equals(cart.get(i))) {
     	    				cart.remove(i);
-    	    				//do the cost reduction for the cart next week here
+    	    				if(cart.get(i).equals("shirt")||cart.get(i).equals("wallet")) {
+    	    					cost-=5;
+    	    				}
+    	    				else if(cart.get(i).equals("cup")||cart.get(i).equals("pastry")) {
+    	    					cost-=3;
+    	    				}
     	    				System.out.println("successfully removed");
     	    				System.out.println("Would you like to buy something else, view cart, or checkout?");
     	    	    		check = scan.nextLine();
@@ -78,7 +90,30 @@ public class ConsoleStore<T> {
     	for(int i = 0; i < cart.size(); i++) {
     		System.out.println(cart.get(i));
     	}
+    	if(cost > 25) {
+    		System.out.println("Your total is " + cost + "please remove something so you can actually pay for it, what would you like to remove");
+    		remove = scan.nextLine();
+    		do {
+	    		for(int i = 0; i < cart.size(); i++) {
+	    			if(remove.equals(cart.get(i))) {
+	    				cart.remove(i);
+	    				if(cart.get(i).equals("shirt")||cart.get(i).equals("wallet")) {
+	    					cost-=5;
+	    				}
+	    				else if(cart.get(i).equals("cup")||cart.get(i).equals("pastry")) {
+	    					cost-=3;
+	    				}
+	    				System.out.println("successfully removed");
+	    		}
+	    	}
+    }while(cost > 25);
     	System.out.println("Your total is " + cost);
+    	for(int i = 0; i < cart.size();i++){
+    		cart2.add(cart.get(i));
+    		
+    		
+    	
+    }
     	
     	
    
@@ -88,4 +123,5 @@ public class ConsoleStore<T> {
     	
     }
 
+}
 }
